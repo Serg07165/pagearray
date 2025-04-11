@@ -1,0 +1,5 @@
+Интерактивная песочница по изучению гит
+https://learngitbranching.js.org/?locale=ru_RU
+
+Небольшой учебник по гиту
+https://proglib.io/p/git-for-half-an-hour

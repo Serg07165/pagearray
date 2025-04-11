@@ -1,0 +1,157 @@
+git help
+
+Создание локального репозитория:
+mkdir top
+cd top
+git init
+
+Первоначальная настройка:
+git config --global user.name "<имя фамилия>"
+git config --global user.email "<ваш емейл>"
+
+git status
+
+Генерация ключа:
+ssh-keygen
+ssh-keygen -t ed25519  -C "your_email@example.com"
+cat ~/.ssh/id_rsa.pub
+
+Связь с удаленным репозиторием по ssh
+git remote add origin git@github.com:<username>/<repo>.git
+git branch -M main
+git push -u origin main
+
+Проверить связь с репозиторием
+git remote -v
+
+Обновить ссылку на удаленный репозиторий
+git remote set-url origin git@github.com:<username>/<repo>.git
+
+Добавить файлы в индекс
+git add README.md
+git add .
+
+Коммит с комментарием
+git commit -m 'add README.md'
+
+Можно пропустить этап add . и сделать его одновременно с коммитом 
+git commit -am 'do something'
+
+Клонирование репозитория
+git clone git@github.com:<username>/<repo>.git
+
+Получить изменения из удаленного репозитория
+git pull --rebase
+(rebase делаем чтобы не было ненужных коммитов)
+
+
+Восстановить удаленный файл до коммита
+git restore PEOPLE.md
+
+Удалить файл и добавить в индекс
+git rm PEOPLE.md
+
+Посмотреть текущие изменения файлов не в индексе
+git diff
+
+Изменения файлов в индексе (подготовленных к коммиту)
+git diff --staged
+
+История всех коммитов
+git log
+
+История вместе с изменениями
+git log -p
+(навигация f b q)
+
+Краткий лог
+git log --oneline
+
+Краткий лог с графиком
+git log --oneline --graph
+
+Посмотреть конкретный коммит git show 1234567
+
+Кто менял файл
+git blame INFO.md
+
+Очистить файлы и пустые каталоги, удаление всех незакоммиченных изменений
+git clean -fd
+
+Восстановить файл как было до включения в индекс
+git restore INFO.md
+
+Восстановить файл после добавления в индекс и подготовки к коммиту
+git restore --staged INFO.md
+
+ОТМЕНА коммита, создает новый коммит с противоположными изменениями (засоряет историю), потребует коммент
+git revert
+git revert aa600a4 
+(можно задать конкретный коммит, а не только последний)
+
+Удаление коммита (совсем)
+git reset --hard HEAD~
+git reset --hard HEAD~2
+(можно сразу 2)
+Без --hard будет отмена коммита но не удаление его.
+HEAD~ означает один коммит от последнего.
+
+Склеивание коммитов (3 последних с новым mеssage)
+git reset --soft HEAD~3
+git commit -a -m 'New commit message'
+
+Интерактивное редактирование коммитов
+git rebase -i HEAD~3
+(3 количество затронутых коммитов)
+p, pick - означает использовать коммит или оставить его, то есть не трогать
+r, reword - переименовать коммит
+e, edit - редактировать коммит. Здесь имеется в виду редактирование содержимого коммита
+s, squash - сквош или склеивание коммитов
+f, fixup - это то же самое, что и сквош, только с той разницей, что гит не будет предлагать самим написать commit message, а возьмет его из того коммита, к которому приклеиваются остальные
+d, drop - удалить коммит
+
+Если забыли добавить файл в коммит, можно это сделать, будет возможность поменять описание
+git add README.md
+git commit --amend
+(происходит откат через git reset и новый коммит)
+--no-edit ключ позволить не вызывать редактор
+
+ВЕТВЛЕНИЕ
+
+Переключение на ветку  
+git checkout
+git checkout main
+
+Показать текущую ветку
+git branch
+
+Если вывод типа (HEAD detached at f60e289) то мы не в конце, должно быть * main
+
+Создать ветку и сразу переключиться на нее
+git checkout -b iss53
+
+В два действия тожесамое
+git branch iss53
+git checkout iss53
+
+Слияние веток
+git checkout master
+git merge hotfix
+(ветка вливается в текущую)
+
+Удаление ветки
+git branch -d hotfix
+
+Удаление в удаленном репозитории
+git push origin --delete hotfix
+
+Взять изменения, вносимые одним коммитом, 
+и пытаться повторно применить их в виде нового коммита в текущей ветке
+если нужно взять пару коммитов из другой ветки, а не сливать всю целиком
+git cherry-pick <хеш переносимого коммита>amend
+
+git remote -v посмотреть origin
+pull-request ветки pull
+git push --set-upstream origin pull
+git push --all
+git push origin <имя_ветки>

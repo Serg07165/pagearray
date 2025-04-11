@@ -1,0 +1,23 @@
+{
+    "name": "kassi/localhost",
+    "autoload": {
+        "files": [
+            "src/main.php",
+            "src/quizs/quiz1.php",
+            "src/quizs/quiz2.php",
+            "src/blog/post.php",
+            "src/helpers.php"
+        ]
+    }, 
+    "authors": [
+        {
+            "name": "SergeyK",
+            "email": "lg02121497@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-readline": "*",
+        "monolog/monolog": "^3.9"
+    }
+}
