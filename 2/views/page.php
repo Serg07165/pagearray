@@ -1,10 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Главная страница</title>
+    
 </head>
 <body>
-   <?=$hello?>
+   <h1><?=$hello?></h1>
+   <br>
+   <a class="gallery-link" href="gallery.php">Перейти в галерею</a>
 </body>
 </html>
